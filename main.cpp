@@ -71,6 +71,36 @@ int main() {
 
     fin.close();
 
+    // Open the file again for set reading
+    fin.open("codes.txt");
+
+    if (!fin) {
+        cout << "Error opening file." << endl;
+        return 1;
+    }
+
+    // Start timing set reading
+    start = high_resolution_clock::now();
+
+    while (fin >> word) {
+        st.insert(word);
+    }
+
+    // End timing set reading
+    end = high_resolution_clock::now();
+
+    duration = duration_cast<nanoseconds>(end - start);
+
+    cout << "Set reading time: " << duration.count()
+         << " nanoseconds" << endl;
+
+    fin.close();
+
+    cout << "\nNumber of elements:" << endl;
+    cout << "Vector: " << vec.size() << endl;
+    cout << "List: " << lst.size() << endl;
+    cout << "Set: " << st.size() << endl;
+
     return 0;
 }
 
