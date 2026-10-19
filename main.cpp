@@ -13,6 +13,7 @@ using namespace std;
 using namespace std::chrono;
 
 const int SIZE = 20000;
+const int WIDTH = 15;
 
 int main() {
     vector<string> vec;
@@ -46,9 +47,6 @@ int main() {
 
     results[0][0] = duration.count();
 
-    cout << "Vector reading time: " << duration.count()
-         << " nanoseconds" << endl;
-
     fin.close();
 
     //-----------------------------------------------------
@@ -73,9 +71,6 @@ int main() {
     duration = duration_cast<nanoseconds>(end - start);
 
     results[0][1] = duration.count();
-
-    cout << "List reading time: " << duration.count()
-         << " nanoseconds" << endl;
 
     fin.close();
 
@@ -102,9 +97,6 @@ int main() {
 
     results[0][2] = duration.count();
 
-    cout << "Set reading time: " << duration.count()
-         << " nanoseconds" << endl;
-
     fin.close();
 
     /*****************************************************/
@@ -121,9 +113,6 @@ int main() {
 
     results[1][0] = duration.count();
 
-    cout << "\nVector sorting time: " << duration.count()
-         << " nanoseconds" << endl;
-
     //-----------------------------------------------------
     // Start timing list sorting
     start = high_resolution_clock::now();
@@ -137,17 +126,11 @@ int main() {
 
     results[1][1] = duration.count();
 
-    cout << "List sorting time: " << duration.count()
-         << " nanoseconds" << endl;
-
     //-----------------------------------------------------
     // Set is already sorted
     long long setSortTime = -1;
 
     results[1][2] = setSortTime;
-
-    cout << "Set sorting time: " << setSortTime
-         << " nanoseconds" << endl;
 
     /*****************************************************/
     //-----------------------------------------------------
@@ -162,9 +145,6 @@ int main() {
     duration = duration_cast<nanoseconds>(end - start);
 
     results[2][0] = duration.count();
-
-    cout << "\nVector inserting time: " << duration.count()
-         << " nanoseconds" << endl;
 
     //-----------------------------------------------------
     // Find the middle of the list
@@ -186,9 +166,6 @@ int main() {
 
     results[2][1] = duration.count();
 
-    cout << "List inserting time: " << duration.count()
-         << " nanoseconds" << endl;
-
     //-----------------------------------------------------
     // Start timing set inserting
     start = high_resolution_clock::now();
@@ -201,9 +178,6 @@ int main() {
     duration = duration_cast<nanoseconds>(end - start);
 
     results[2][2] = duration.count();
-
-    cout << "Set inserting time: " << duration.count()
-         << " nanoseconds" << endl;
 
     /*****************************************************/
     //-----------------------------------------------------
@@ -218,9 +192,6 @@ int main() {
     duration = duration_cast<nanoseconds>(end - start);
 
     results[3][0] = duration.count();
-
-    cout << "\nVector deleting time: " << duration.count()
-         << " nanoseconds" << endl;
 
     //-----------------------------------------------------
     // Find the middle of the list
@@ -242,9 +213,6 @@ int main() {
 
     results[3][1] = duration.count();
 
-    cout << "List deleting time: " << duration.count()
-         << " nanoseconds" << endl;
-
     //-----------------------------------------------------
     // Find the middle of the set
     auto itSetDelete = st.begin();
@@ -265,15 +233,32 @@ int main() {
 
     results[3][2] = duration.count();
 
-    cout << "Set deleting time: " << duration.count()
-         << " nanoseconds" << endl;
-
     /*****************************************************/
     //-----------------------------------------------------
-    cout << "\nNumber of elements after deleting:" << endl;
-    cout << "Vector: " << vec.size() << endl;
-    cout << "List: " << lst.size() << endl;
-    cout << "Set: " << st.size() << endl;
+    // Display the final race results
+    string raceNames[4] = {
+        "Reading",
+        "Sorting",
+        "Inserting",
+        "Deleting"
+    };
+
+    cout << "\nData Structures Races (nanoseconds)\n";
+
+    cout << left << setw(WIDTH) << "Operation"
+         << right << setw(WIDTH) << "Vector"
+         << setw(WIDTH) << "List"
+         << setw(WIDTH) << "Set" << endl;
+
+    for (int i = 0; i < 4; i++) {
+        cout << left << setw(WIDTH) << raceNames[i];
+
+        for (int j = 0; j < 3; j++) {
+            cout << right << setw(WIDTH) << results[i][j];
+        }
+
+        cout << endl;
+    }
 
     return 0;
 }
