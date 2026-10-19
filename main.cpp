@@ -132,7 +132,56 @@ int main() {
     cout << "Set sorting time: " << setSortTime
          << " nanoseconds" << endl;
 
+    //-----------------------------------------------------
+    // Start timing vector inserting
+    start = high_resolution_clock::now();
 
+    vec.insert(vec.begin() + vec.size() / 2, "TESTCODE");
+
+    // End timing vector inserting
+    end = high_resolution_clock::now();
+
+    duration = duration_cast<nanoseconds>(end - start);
+
+    cout << "\nVector inserting time: " << duration.count()
+         << " nanoseconds" << endl;
+
+    //-----------------------------------------------------
+    // Find the middle of the list
+    auto it = lst.begin();
+
+    for (int i = 0; i < lst.size() / 2; i++) {
+        it++;
+    }
+
+    // Start timing list inserting
+    start = high_resolution_clock::now();
+
+    lst.insert(it, "TESTCODE");
+
+    // End timing list inserting
+    end = high_resolution_clock::now();
+
+    duration = duration_cast<nanoseconds>(end - start);
+
+    cout << "List inserting time: " << duration.count()
+         << " nanoseconds" << endl;
+
+    //-----------------------------------------------------
+    // Start timing set inserting
+    start = high_resolution_clock::now();
+
+    st.insert("TESTCODE");
+
+    // End timing set inserting
+    end = high_resolution_clock::now();
+
+    duration = duration_cast<nanoseconds>(end - start);
+
+    cout << "Set inserting time: " << duration.count()
+         << " nanoseconds" << endl;
+
+    //-----------------------------------------------------
     cout << "\nNumber of elements:" << endl;
     cout << "Vector: " << vec.size() << endl;
     cout << "List: " << lst.size() << endl;
