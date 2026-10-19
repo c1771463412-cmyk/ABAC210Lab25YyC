@@ -19,6 +19,9 @@ int main() {
     list<string> lst;
     set<string> st;
 
+    // Store the time results for each race
+    long long results[4][3] = {0};
+
     //-----------------------------------------------------
     ifstream fin("codes.txt");
 
@@ -40,6 +43,8 @@ int main() {
     auto end = high_resolution_clock::now();
 
     auto duration = duration_cast<nanoseconds>(end - start);
+
+    results[0][0] = duration.count();
 
     cout << "Vector reading time: " << duration.count()
          << " nanoseconds" << endl;
@@ -67,6 +72,8 @@ int main() {
 
     duration = duration_cast<nanoseconds>(end - start);
 
+    results[0][1] = duration.count();
+
     cout << "List reading time: " << duration.count()
          << " nanoseconds" << endl;
 
@@ -93,6 +100,8 @@ int main() {
 
     duration = duration_cast<nanoseconds>(end - start);
 
+    results[0][2] = duration.count();
+
     cout << "Set reading time: " << duration.count()
          << " nanoseconds" << endl;
 
@@ -110,6 +119,8 @@ int main() {
 
     duration = duration_cast<nanoseconds>(end - start);
 
+    results[1][0] = duration.count();
+
     cout << "\nVector sorting time: " << duration.count()
          << " nanoseconds" << endl;
 
@@ -124,12 +135,16 @@ int main() {
 
     duration = duration_cast<nanoseconds>(end - start);
 
+    results[1][1] = duration.count();
+
     cout << "List sorting time: " << duration.count()
          << " nanoseconds" << endl;
 
     //-----------------------------------------------------
     // Set is already sorted
     long long setSortTime = -1;
+
+    results[1][2] = setSortTime;
 
     cout << "Set sorting time: " << setSortTime
          << " nanoseconds" << endl;
@@ -145,6 +160,8 @@ int main() {
     end = high_resolution_clock::now();
 
     duration = duration_cast<nanoseconds>(end - start);
+
+    results[2][0] = duration.count();
 
     cout << "\nVector inserting time: " << duration.count()
          << " nanoseconds" << endl;
@@ -167,6 +184,8 @@ int main() {
 
     duration = duration_cast<nanoseconds>(end - start);
 
+    results[2][1] = duration.count();
+
     cout << "List inserting time: " << duration.count()
          << " nanoseconds" << endl;
 
@@ -180,6 +199,8 @@ int main() {
     end = high_resolution_clock::now();
 
     duration = duration_cast<nanoseconds>(end - start);
+
+    results[2][2] = duration.count();
 
     cout << "Set inserting time: " << duration.count()
          << " nanoseconds" << endl;
@@ -195,6 +216,8 @@ int main() {
     end = high_resolution_clock::now();
 
     duration = duration_cast<nanoseconds>(end - start);
+
+    results[3][0] = duration.count();
 
     cout << "\nVector deleting time: " << duration.count()
          << " nanoseconds" << endl;
@@ -217,6 +240,8 @@ int main() {
 
     duration = duration_cast<nanoseconds>(end - start);
 
+    results[3][1] = duration.count();
+
     cout << "List deleting time: " << duration.count()
          << " nanoseconds" << endl;
 
@@ -237,6 +262,8 @@ int main() {
     end = high_resolution_clock::now();
 
     duration = duration_cast<nanoseconds>(end - start);
+
+    results[3][2] = duration.count();
 
     cout << "Set deleting time: " << duration.count()
          << " nanoseconds" << endl;
