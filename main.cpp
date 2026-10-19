@@ -71,6 +71,7 @@ int main() {
 
     fin.close();
 
+    //-----------------------------------------------------
     // Open the file again for set reading
     fin.open("codes.txt");
 
@@ -95,6 +96,42 @@ int main() {
          << " nanoseconds" << endl;
 
     fin.close();
+
+    //-----------------------------------------------------
+    // Start timing vector sorting
+    start = high_resolution_clock::now();
+
+    sort(vec.begin(), vec.end());
+
+    // End timing vector sorting
+    end = high_resolution_clock::now();
+
+    duration = duration_cast<nanoseconds>(end - start);
+
+    cout << "\nVector sorting time: " << duration.count()
+         << " nanoseconds" << endl;
+
+    //-----------------------------------------------------
+    // Start timing list sorting
+    start = high_resolution_clock::now();
+
+    lst.sort();
+
+    // End timing list sorting
+    end = high_resolution_clock::now();
+
+    duration = duration_cast<nanoseconds>(end - start);
+
+    cout << "List sorting time: " << duration.count()
+         << " nanoseconds" << endl;
+
+    //-----------------------------------------------------
+    // Set is already sorted
+    long long setSortTime = -1;
+
+    cout << "Set sorting time: " << setSortTime
+         << " nanoseconds" << endl;
+
 
     cout << "\nNumber of elements:" << endl;
     cout << "Vector: " << vec.size() << endl;
