@@ -19,6 +19,7 @@ int main() {
     list<string> lst;
     set<string> st;
 
+    //-----------------------------------------------------
     ifstream fin("codes.txt");
 
     if (!fin) {
@@ -97,6 +98,7 @@ int main() {
 
     fin.close();
 
+    /*****************************************************/
     //-----------------------------------------------------
     // Start timing vector sorting
     start = high_resolution_clock::now();
@@ -132,6 +134,7 @@ int main() {
     cout << "Set sorting time: " << setSortTime
          << " nanoseconds" << endl;
 
+    /*****************************************************/
     //-----------------------------------------------------
     // Start timing vector inserting
     start = high_resolution_clock::now();
@@ -181,8 +184,66 @@ int main() {
     cout << "Set inserting time: " << duration.count()
          << " nanoseconds" << endl;
 
+    /*****************************************************/
     //-----------------------------------------------------
-    cout << "\nNumber of elements:" << endl;
+    // Start timing vector deleting
+    start = high_resolution_clock::now();
+
+    vec.erase(vec.begin() + vec.size() / 2);
+
+    // End timing vector deleting
+    end = high_resolution_clock::now();
+
+    duration = duration_cast<nanoseconds>(end - start);
+
+    cout << "\nVector deleting time: " << duration.count()
+         << " nanoseconds" << endl;
+
+    //-----------------------------------------------------
+    // Find the middle of the list
+    auto itDelete = lst.begin();
+
+    for (int i = 0; i < lst.size() / 2; i++) {
+        itDelete++;
+    }
+
+    // Start timing list deleting
+    start = high_resolution_clock::now();
+
+    lst.erase(itDelete);
+
+    // End timing list deleting
+    end = high_resolution_clock::now();
+
+    duration = duration_cast<nanoseconds>(end - start);
+
+    cout << "List deleting time: " << duration.count()
+         << " nanoseconds" << endl;
+
+    //-----------------------------------------------------
+    // Find the middle of the set
+    auto itSetDelete = st.begin();
+
+    for (int i = 0; i < st.size() / 2; i++) {
+        itSetDelete++;
+    }
+
+    // Start timing set deleting
+    start = high_resolution_clock::now();
+
+    st.erase(itSetDelete);
+
+    // End timing set deleting
+    end = high_resolution_clock::now();
+
+    duration = duration_cast<nanoseconds>(end - start);
+
+    cout << "Set deleting time: " << duration.count()
+         << " nanoseconds" << endl;
+
+    /*****************************************************/
+    //-----------------------------------------------------
+    cout << "\nNumber of elements after deleting:" << endl;
     cout << "Vector: " << vec.size() << endl;
     cout << "List: " << lst.size() << endl;
     cout << "Set: " << st.size() << endl;
