@@ -12,7 +12,6 @@
 using namespace std;
 using namespace std::chrono;
 
-const int SIZE = 20000;
 const int WIDTH = 15;
 
 int main() {
@@ -23,7 +22,10 @@ int main() {
     // Store the time results for each race
     long long results[4][3] = {0};
 
-    //-----------------------------------------------------
+    //-------------
+    // Reading Race
+    //-------------
+
     ifstream fin("codes.txt");
 
     if (!fin) {
@@ -99,8 +101,10 @@ int main() {
 
     fin.close();
 
-    /*****************************************************/
-    //-----------------------------------------------------
+    //-------------
+    // Sorting Race
+    //-------------
+
     // Start timing vector sorting
     start = high_resolution_clock::now();
 
@@ -132,8 +136,10 @@ int main() {
 
     results[1][2] = setSortTime;
 
-    /*****************************************************/
-    //-----------------------------------------------------
+    //---------------
+    // Inserting Race
+    //---------------
+
     // Start timing vector inserting
     start = high_resolution_clock::now();
 
@@ -179,8 +185,10 @@ int main() {
 
     results[2][2] = duration.count();
 
-    /*****************************************************/
-    //-----------------------------------------------------
+    //--------------
+    // Deleting Race
+    //--------------
+
     // Start timing vector deleting
     start = high_resolution_clock::now();
 
@@ -262,10 +270,3 @@ int main() {
 
     return 0;
 }
-
-/* syntax examples:
-auto start = high_resolution_clock::now()
-auto end = high_resolution_clock::now()
-auto duration = duration_cast<milliseconds>(end - start)
-duration.count() references elapsed milliseconds
-*/
